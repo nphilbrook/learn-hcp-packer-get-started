@@ -58,7 +58,7 @@ source "googlecompute" "basic-example-gcp" {
   source_image_family = "ubuntu-2004-lts"
   image_description   = "built with packer"
   ssh_username        = "ubuntu"
-  image_name          = "packer_GCP_{{timestamp}}_v${var.version}"
+  image_name          = "packer-gcp-{{timestamp}}-v${replace(var.version, ".", "-")}"
 }
 
 build {

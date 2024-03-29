@@ -58,11 +58,11 @@ build {
   hcp_packer_registry {
     bucket_name = "learn-packer-application"
     description = <<EOT
-Some nice description about the image being published to HCP Packer Registry.
+Hella World.
     EOT
     bucket_labels = {
       "foo-version" = "3.4.0",
-      "foo" = "bar",
+      "foo"         = "bar",
     }
   }
   sources = [
