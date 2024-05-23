@@ -53,7 +53,7 @@ source "amazon-ebs" "basic-example-west" {
 }
 
 source "googlecompute" "basic-example-gcp" {
-  project_id          = "hc-1dd9ddc1f2704ff99c6b6415550"
+  project_id          = "hc-9e268a3159ea47ad9ae0b4744a7"
   zone                = "us-central1-f"
   source_image_family = "ubuntu-2004-lts"
   image_description   = "built with packer"
@@ -63,7 +63,7 @@ source "googlecompute" "basic-example-gcp" {
 
 build {
   hcp_packer_registry {
-    bucket_name = "learn-packer-ubuntu"
+    bucket_name = "multicloud-ubuntu-base"
     description = <<EOT
 MEOW WORLD.
     EOT

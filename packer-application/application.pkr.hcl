@@ -8,19 +8,19 @@ packer {
 }
 
 data "hcp-packer-version" "ubuntu" {
-  bucket_name  = "learn-packer-ubuntu"
+  bucket_name  = "multicloud-ubuntu-base"
   channel_name = "production"
 }
 
 data "hcp-packer-artifact" "ubuntu-east" {
-  bucket_name         = "learn-packer-ubuntu"
+  bucket_name         = "multicloud-ubuntu-base"
   version_fingerprint = data.hcp-packer-version.ubuntu.fingerprint
   platform            = "aws"
   region              = "us-east-2"
 }
 
 data "hcp-packer-artifact" "ubuntu-west" {
-  bucket_name         = "learn-packer-ubuntu"
+  bucket_name         = "multicloud-ubuntu-base"
   version_fingerprint = data.hcp-packer-version.ubuntu.fingerprint
   platform            = "aws"
   region              = "us-west-1"
@@ -36,7 +36,7 @@ source "amazon-ebs" "application-east" {
   ssh_agent_auth = false
 
   tags = {
-    Name = "learn-packer-application"
+    Name = "application-1"
   }
 }
 
@@ -50,19 +50,20 @@ source "amazon-ebs" "application-west" {
   ssh_agent_auth = false
 
   tags = {
-    Name = "learn-packer-application"
+    Name = "application-1"
   }
 }
 
 build {
   hcp_packer_registry {
-    bucket_name = "learn-packer-application"
+    bucket_name = "multicloud-ubuntu-application"
     description = <<EOT
 Hella World.
     EOT
     bucket_labels = {
       "foo-version" = "3.4.0",
       "foo"         = "bar",
+      "owner"       = "AppDev team"
     }
   }
   sources = [
